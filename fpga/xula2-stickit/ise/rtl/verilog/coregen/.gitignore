@@ -1,0 +1,16 @@
+_xmsgs/
+coregen.cgp
+coregen.log
+*.tcl
+*.asy
+*.gise
+*.ngc
+*.v
+*.veo
+ram_*/
+*.txt
+*.ncf
+*.sym
+rom_*/
+summary.log
+tmp/
