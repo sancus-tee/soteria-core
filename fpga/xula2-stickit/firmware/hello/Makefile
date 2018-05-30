@@ -1,6 +1,8 @@
 # makfile configuration
+ROM       = 48K
+RAM       = 10K
 NAME            = leds
-OBJECTS         = main.o
+OBJECTS         = main.o uart.o
 CPU             = msp430f1121
 
 CFLAGS          = -mmcu=${CPU} -O0 -Wall -g
@@ -21,7 +23,8 @@ download: download-uart
 
 #additional rules for files
 ${NAME}.elf: ${OBJECTS}
-	${CC} -mmcu=${CPU} -o $@ ${OBJECTS}
+	${CC} -mmcu=${CPU} -c -o $@ ${OBJECTS}
+	sancus-ld --standalone --rom-size $(ROM) --ram-size $(RAM) -o $(NAME).elf $(OBJECTS)
 
 ${NAME}.a43: ${NAME}.elf
 	msp430-objcopy -O ihex $^ $@
@@ -36,7 +39,7 @@ download-bsl: all
 	msp430-bsl -e ${NAME}.elf
 
 download-uart: all
-	../../../../tools/bin/openmsp430-loader.tcl -device /dev/ttyUSB1 -baudrate 115200 ${NAME}.elf
+	../../../../tools/bin/openmsp430-loader.tcl -device /dev/ttyUSB0 -baudrate 115200 ${NAME}.elf
 
 clean:
 	rm -f ${NAME} ${NAME}.a43 ${NAME}.lst *.o

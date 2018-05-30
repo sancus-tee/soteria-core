@@ -1,16 +1,25 @@
 #include "hardware.h"
+#include "uart.h"
+#include <stdio.h>
+
+int putchar(int c)
+{
+    if (c == '\n')
+        putchar('\r');
+
+    uart_write_byte(c);
+    return c;
+}
 
 int main(void) {
 
     WDTCTL = WDTPW | WDTHOLD;          // Disable watchdog timer
 
-    P3DIR  = 0x0f;
-    P4DIR  = 0x00;
+    uart_init();
+    puts("hello world!");
 
-    while(1){
-	P3OUT = P4IN;
-    }
 
+    while(1);
     return 0;
 }
 
