@@ -1,0 +1,20 @@
+NET "USER_CLOCK" TNM_NET = "USER_CLOCK";
+TIMESPEC TS_USER_CLOCK = PERIOD "USER_CLOCK" 15.151 ns HIGH 50 % INPUT_JITTER 100.0 ps;
+
+NET "USER_CLOCK"                    LOC = "U23";    ## 5   on X5
+
+NET "USB_1_TX"                      LOC = "J24";    ## 25  on U34
+NET "USB_1_RX"                      LOC = "J25";    ## 24  on U34
+
+NET "GPIO_LED_0"                    LOC = "AC22";   ## 2   on LED DS12, 1 on J62
+NET "GPIO_LED_1"                    LOC = "AC24";   ## 2   on LED DS11, 2 on J62
+NET "GPIO_LED_2"                    LOC = "AE22";   ## 2   on LED DS9,  3 on J62
+NET "GPIO_LED_3"                    LOC = "AE23";   ## 2   on LED DS10, 4 on J62
+NET "GPIO_LED_7"                    LOC = "AD24";   ## 2   on LED DS21, 8 on J62
+NET "GPIO_DIP_SW1"                  LOC = "D22";    ## 1   on SW1 DIP switch (active-high)
+NET "GPIO_DIP_SW2"                  LOC = "C22";    ## 2   on SW1 DIP switch (active-high)
+NET "GPIO_DIP_SW3"                  LOC = "L21";    ## 3   on SW1 DIP switch (active-high)
+NET "GPIO_DIP_SW4"                  LOC = "L20";    ## 4   on SW1 DIP switch (active-high)
+NET "GPIO_DIP_SW8"                  LOC = "K21";    ## 8   on SW1 DIP switch (active-high)
+
+NET "GPIO_SW_S"                     LOC = "A18";    ## 2   on SW6 pushbutton (active-high)
