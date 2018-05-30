@@ -226,16 +226,20 @@ wire         [15:0] current_inst_pc;
 wire                spm_busy;
 wire                mem_writing;
 
+/*
 wire  [`DMEM_MSB:0] mem_dmem_addr;
 wire                mem_dmem_cen;
 wire         [15:0] mem_dmem_din;
 wire          [1:0] mem_dmem_wen;
 wire                clk_puc_rst;
+*/
 
 //=============================================================================
 // 2)  GLOBAL CLOCK & RESET MANAGEMENT
 //=============================================================================
 
+/*
+// jo commented out as quick hack to get it working on Xula2 FPGA
 omsp_mem_erase mem_erase_0 (
 
 // OUTPUTs
@@ -254,6 +258,7 @@ omsp_mem_erase mem_erase_0 (
     .cpuoff        (cpuoff),        // Turns off the CPU
     .clk_puc_rst   (clk_puc_rst)    // Main system reset from clock unit
 );
+*/
 
 wire spm_violation;
 reg spm_violation_s;
@@ -284,7 +289,7 @@ omsp_clock_module clock_module_0 (
     .per_dout     (per_dout_clk),  // Peripheral data output
     .por          (por),           // Power-on reset
     .puc_pnd_set  (puc_pnd_set),   // PUC pending set for the serial debug interface
-    .puc_rst      (clk_puc_rst),   // Main system reset
+    .puc_rst      (puc_rst),   // Main system reset
     .smclk        (smclk),         // SMCLK
     .smclk_en     (smclk_en),      // SMCLK enable
 	     
@@ -430,10 +435,10 @@ omsp_mem_backbone mem_backbone_0 (
 
 // OUTPUTs
     .dbg_mem_din  (dbg_mem_din),   // Debug unit Memory data input
-    .dmem_addr    (mem_dmem_addr), // Data Memory address
-    .dmem_cen     (mem_dmem_cen),  // Data Memory chip enable (low active)
-    .dmem_din     (mem_dmem_din),  // Data Memory data input
-    .dmem_wen     (mem_dmem_wen),  // Data Memory write enable (low active)
+    .dmem_addr    (dmem_addr), // Data Memory address
+    .dmem_cen     (dmem_cen),  // Data Memory chip enable (low active)
+    .dmem_din     (dmem_din),  // Data Memory data input
+    .dmem_wen     (dmem_wen),  // Data Memory write enable (low active)
     .eu_mdb_in    (eu_mdb_in),     // Execution Unit Memory data bus input
     .fe_mdb_in    (fe_mdb_in),     // Frontend Memory data bus input
     .fe_mem_wait  (fe_mem_wait),   // Frontend wait for Instruction fetch
